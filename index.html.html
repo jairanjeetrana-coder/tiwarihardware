@@ -1,0 +1,519 @@
+htm<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tiwari Hardware & Enterprises — Tools, Fittings &amp; Building Supplies</title>
+<meta name="description" content="Tiwari Hardware & Enterprises your neighbourhood hardware store for tools, electrical, plumbing, paint and building supplies.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --steel-900:#1c1f22;
+    --steel-800:#2a2e32;
+    --steel-700:#3d4247;
+    --concrete:#d8d3c8;
+    --paper:#f3f0e8;
+    --amber:#f0a400;
+    --rust:#b1502e;
+    --line:#4a4f54;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--steel-900);
+    font-family:'Inter',sans-serif;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{
+    font-family:'Oswald',sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.02em;
+  }
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%;display:block;}
+
+  /* ---- pegboard texture strip used as a signature device ---- */
+  .peg-strip{
+    height:14px;
+    background-image:radial-gradient(var(--steel-700) 2px, transparent 2.2px);
+    background-size:22px 14px;
+    background-color:var(--amber);
+    background-position:11px 7px, 0 0;
+  }
+  .peg-strip.dark{background-color:var(--steel-900);}
+
+  /* ---- header ---- */
+  header{
+    background:var(--steel-900);
+    color:var(--paper);
+    padding:22px 6%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    position:sticky;
+    top:0;
+    z-index:50;
+    border-bottom:4px solid var(--amber);
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:14px;
+  }
+  .brand-mark{
+    width:44px;height:44px;
+    border:3px solid var(--amber);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Bebas Neue',sans-serif;
+    font-size:22px;
+    color:var(--amber);
+    transform:rotate(45deg);
+    flex-shrink:0;
+  }
+  .brand-mark span{transform:rotate(-45deg);}
+  .brand-text .kicker{
+    font-size:11px;
+    letter-spacing:0.25em;
+    color:var(--amber);
+    font-family:'Oswald',sans-serif;
+  }
+  .brand-text h1{font-size:22px; line-height:1;}
+  nav{display:flex; gap:28px; font-family:'Oswald',sans-serif; font-size:14px; letter-spacing:0.05em;}
+  nav a{opacity:0.85; transition:opacity .2s, color .2s;}
+  nav a:hover{opacity:1; color:var(--amber);}
+  .nav-toggle{display:none; background:none; border:none; color:var(--paper); font-size:26px; cursor:pointer;}
+
+  /* ---- hero ---- */
+  .hero{
+    position:relative;
+    background:var(--steel-900);
+    color:var(--paper);
+    padding:90px 6% 110px;
+    background-image:
+      linear-gradient(180deg, rgba(28,31,34,0.85), rgba(28,31,34,0.97)),
+      repeating-linear-gradient(135deg, #23272a 0px, #23272a 2px, #1c1f22 2px, #1c1f22 40px);
+  }
+  .hero-inner{max-width:760px;}
+  .hero .kicker{
+    color:var(--amber);
+    font-family:'Oswald',sans-serif;
+    letter-spacing:0.3em;
+    font-size:13px;
+    margin-bottom:18px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .hero .kicker::before{content:"";width:34px;height:2px;background:var(--amber);display:inline-block;}
+  .hero h1{
+    font-family:'Bebas Neue',sans-serif;
+    font-size:clamp(48px,9vw,92px);
+    line-height:0.95;
+    color:var(--paper);
+  }
+  .hero h1 em{font-style:normal; color:var(--amber);}
+  .hero p.lede{
+    margin-top:22px;
+    font-size:18px;
+    line-height:1.6;
+    color:#c9c4bb;
+    max-width:520px;
+  }
+  .hero-cta{
+    margin-top:36px;
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    font-family:'Oswald',sans-serif;
+    letter-spacing:0.05em;
+    font-size:14px;
+    padding:15px 28px;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    border:2px solid transparent;
+    transition:transform .15s ease, background .2s ease, color .2s ease;
+    cursor:pointer;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-solid{background:var(--amber); color:var(--steel-900);}
+  .btn-solid:hover{background:#ffb821;}
+  .btn-outline{border-color:var(--paper); color:var(--paper);}
+  .btn-outline:hover{background:var(--paper); color:var(--steel-900);}
+
+  .hero-tape{
+    position:absolute;
+    right:6%;
+    bottom:-1px;
+    font-family:'Oswald',sans-serif;
+    font-size:13px;
+    letter-spacing:0.2em;
+    color:var(--steel-900);
+    background:var(--amber);
+    padding:8px 18px;
+    display:none;
+  }
+  @media(min-width:900px){.hero-tape{display:block;}}
+
+  /* ---- section shell ---- */
+  section{padding:80px 6%;}
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:14px;
+    margin-bottom:44px;
+    border-bottom:2px solid var(--steel-900);
+    padding-bottom:18px;
+  }
+  .section-head .kicker{
+    font-family:'Oswald',sans-serif;
+    font-size:12px;
+    letter-spacing:0.25em;
+    color:var(--rust);
+  }
+  .section-head h2{font-size:clamp(30px,4vw,46px);}
+  .section-head .count{font-family:'Oswald',sans-serif; font-size:14px; color:var(--steel-700);}
+
+  /* ---- categories / grid as pegboard ---- */
+  .categories{background:var(--paper);}
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:2px;
+    background:var(--steel-900);
+    border:2px solid var(--steel-900);
+  }
+  .cat-card{
+    background:var(--paper);
+    padding:32px 26px;
+    min-height:190px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    transition:background .2s ease;
+    position:relative;
+  }
+  .cat-card:hover{background:#eae5d8;}
+  .cat-num{
+    font-family:'Bebas Neue',sans-serif;
+    font-size:14px;
+    color:var(--rust);
+    letter-spacing:0.1em;
+  }
+  .cat-card h3{font-size:22px; margin-top:10px;}
+  .cat-card p{font-size:14px; color:var(--steel-700); margin-top:10px; line-height:1.5;}
+  .cat-icon{
+    width:46px;height:46px;
+    border:2px solid var(--steel-900);
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-size:20px;
+    margin-bottom:6px;
+  }
+
+  /* ---- why us ---- */
+  .why{background:var(--steel-900); color:var(--paper);}
+  .why .section-head{border-color:var(--amber);}
+  .why .section-head h2{color:var(--paper);}
+  .why .section-head .kicker{color:var(--amber);}
+  .why-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:36px;
+  }
+  .why-item .big{
+    font-family:'Bebas Neue',sans-serif;
+    font-size:52px;
+    color:var(--amber);
+    line-height:1;
+  }
+  .why-item h3{font-size:17px; margin-top:12px;}
+  .why-item p{font-size:14px; color:#b9b4aa; margin-top:8px; line-height:1.6;}
+
+  /* ---- brands ticker ---- */
+  .ticker-wrap{
+    background:var(--amber);
+    overflow:hidden;
+    padding:16px 0;
+    border-top:2px solid var(--steel-900);
+    border-bottom:2px solid var(--steel-900);
+  }
+  .ticker{
+    display:flex;
+    gap:60px;
+    white-space:nowrap;
+    animation:scroll 22s linear infinite;
+    font-family:'Oswald',sans-serif;
+    font-weight:600;
+    font-size:16px;
+    letter-spacing:0.08em;
+    color:var(--steel-900);
+  }
+  @keyframes scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+  /* ---- visit / contact ---- */
+  .visit{background:var(--paper);}
+  .visit-grid{
+    display:grid;
+    grid-template-columns:1.1fr 1fr;
+    gap:50px;
+  }
+  @media(max-width:800px){.visit-grid{grid-template-columns:1fr;}}
+  .info-list{list-style:none; margin-top:20px;}
+  .info-list li{
+    display:flex;
+    gap:16px;
+    padding:18px 0;
+    border-bottom:1px solid #cfcabd;
+  }
+  .info-list .label{
+    font-family:'Oswald',sans-serif;
+    font-size:12px;
+    letter-spacing:0.15em;
+    color:var(--rust);
+    width:110px;
+    flex-shrink:0;
+    padding-top:2px;
+  }
+  .info-list .val{font-size:15px; line-height:1.6;}
+  .map-box{
+    background:var(--steel-800);
+    color:var(--paper);
+    min-height:340px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:30px;
+    position:relative;
+    background-image:repeating-linear-gradient(45deg, #33383c 0 2px, transparent 2px 30px);
+  }
+  .map-box .pin{
+    font-size:40px;
+    color:var(--amber);
+  }
+  .map-box p{margin-top:14px; font-size:14px; color:#c9c4bb; max-width:280px;}
+  .map-box{cursor:pointer; transition:background .2s ease;}
+  .map-box:hover{background-color:#3d4247;}
+  .info-list .val a{border-bottom:1px solid transparent; transition:border-color .2s ease, color .2s ease;}
+  .info-list .val a:hover{border-bottom-color:var(--rust); color:var(--rust);}
+
+  /* ---- hours strip ---- */
+  .hours-strip{
+    display:flex;
+    justify-content:center;
+    gap:40px;
+    flex-wrap:wrap;
+    margin-top:40px;
+    padding-top:30px;
+    border-top:2px solid var(--steel-900);
+  }
+  .hours-strip div{text-align:center;}
+  .hours-strip .day{font-family:'Oswald',sans-serif; font-size:12px; letter-spacing:0.15em; color:var(--rust);}
+  .hours-strip .time{font-size:15px; margin-top:6px;}
+
+  /* ---- footer ---- */
+  footer{
+    background:var(--steel-900);
+    color:#a9a49b;
+    padding:44px 6% 30px;
+    font-size:13px;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:16px;
+  }
+  footer .fbrand{color:var(--paper); font-family:'Oswald',sans-serif; letter-spacing:0.1em; font-size:14px;}
+
+  /* ---- whatsapp float ---- */
+  .wa-float{
+    position:fixed;
+    bottom:24px;
+    right:24px;
+    background:#25D366;
+    color:#fff;
+    width:56px;height:56px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:26px;
+    box-shadow:0 6px 18px rgba(0,0,0,0.3);
+    z-index:60;
+    transition:transform .2s ease;
+  }
+  .wa-float:hover{transform:scale(1.08);}
+
+  @media(max-width:820px){
+    nav{
+      position:fixed; top:78px; left:0; right:0;
+      background:var(--steel-900);
+      flex-direction:column;
+      padding:20px 6%;
+      gap:0;
+      transform:translateY(-130%);
+      transition:transform .25s ease;
+      border-bottom:4px solid var(--amber);
+    }
+    nav.open{transform:translateY(0);}
+    nav a{padding:14px 0; border-bottom:1px solid var(--line);}
+    .nav-toggle{display:block;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <div class="brand-mark"><span>TH</span></div>
+    <div class="brand-text">
+      <div class="kicker">Est. Local &amp; Trusted</div>
+      <h1>Tiwari Hardware & Enterprises</h1>
+    </div>
+  </div>
+  <nav id="siteNav">
+    <a href="#categories">Products</a>
+    <a href="#why">Why Us</a>
+    <a href="#visit">Visit</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+</header>
+<div class="peg-strip"></div>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="kicker">Tools · Fittings · Building Supplies</div>
+    <h1>Everything your<br>next job <em>needs</em>,<br>under one roof.</h1>
+    <p class="lede">Tiwari Hardware stocks hand tools, power tools, plumbing supplies, and paints, — with staff who actually know which bolt fits which job.</p>
+    <div class="hero-cta">
+      <a href="#categories" class="btn btn-solid">Browse Categories</a>
+      <a href="#contact" class="btn btn-outline">Get Directions</a>
+    </div>
+  </div>
+  <div class="hero-tape">OPEN 7 DAYS A WEEK</div>
+</section>
+<div class="peg-strip dark"></div>
+
+<section class="categories" id="categories">
+  <div class="section-head">
+    <div>
+      <div class="kicker">What We Stock</div>
+      <h2>Shop by category</h2>
+    </div>
+    <div class="count">4 departments</div>
+  </div>
+  <div class="grid">
+    <div class="cat-card">
+      <div><div class="cat-icon">🔧</div><div class="cat-num">01</div><h3>Hand &amp; Power Tools</h3></div>
+      <p>Wrenches, screwdrivers, drills, cutters and grinders from trusted brands.</p>
+    </div>
+    <div class="cat-card">
+      <div><div class="cat-icon">🚿</div><div class="cat-num">02</div><h3>Plumbing &amp; Sanitary</h3></div>
+      <p>Pipes, taps, valves, fittings and bathroom hardware.</p>
+    </div>
+    <div class="cat-card">
+      <div><div class="cat-icon">🎨</div><div class="cat-num">03</div><h3>Paints &amp; Finishes</h3></div>
+      <p>Interior and exterior paints, primers, brushes and rollers.</p>
+    </div>
+    <div class="cat-card">
+      <div><div class="cat-icon">🔩</div><div class="cat-num">04</div><h3>Fasteners &amp; Fittings</h3></div>
+      <p>Nuts, bolts, screws, hinges, locks and door hardware.</p>
+    </div>
+  </div>
+</section>
+
+<section class="why" id="why">
+  <div class="section-head">
+    <div>
+      <div class="kicker">Since Day One</div>
+      <h2>Why customers keep coming back</h2>
+    </div>
+  </div>
+  <div class="why-grid">
+    <div class="why-item">
+      <div class="big">01</div>
+      <h3>Right part, first time</h3>
+      <p>Bring in the broken piece — our staff will match it on the spot instead of guessing.</p>
+    </div>
+    <div class="why-item">
+      <div class="big">02</div>
+      <h3>Fair, marked prices</h3>
+      <p>No haggling required. What's on the shelf is what you pay.</p>
+    </div>
+    <div class="why-item">
+      <div class="big">03</div>
+      <h3>Bulk &amp; contractor rates</h3>
+      <p>Special pricing for builders, contractors and repeat business accounts.</p>
+    </div>
+    <div class="why-item">
+      <div class="big">04</div>
+      <h3>Same-day local delivery</h3>
+      <p>Order by phone or WhatsApp — we'll get it to your site the same day.</p>
+    </div>
+  </div>
+</section>
+
+<div class="ticker-wrap">
+  <div class="ticker">
+    <span>QUALITY TOOLS</span><span>◆</span><span>TRUSTED BRANDS</span><span>◆</span><span>FAIR PRICING</span><span>◆</span><span>EXPERT ADVICE</span><span>◆</span><span>SAME-DAY DELIVERY</span><span>◆</span>
+    <span>QUALITY TOOLS</span><span>◆</span><span>TRUSTED BRANDS</span><span>◆</span><span>FAIR PRICING</span><span>◆</span><span>EXPERT ADVICE</span><span>◆</span><span>SAME-DAY DELIVERY</span><span>◆</span>
+  </div>
+</div>
+
+<section class="visit" id="visit">
+  <div class="section-head">
+    <div>
+      <div class="kicker">Find Us</div>
+      <h2>Visit the shop</h2>
+    </div>
+  </div>
+  <div class="visit-grid">
+    <div>
+      <ul class="info-list" id="contact">
+        <li><span class="label">Address</span><span class="val"><a href="https://maps.app.goo.gl/FRSXS6TFd8zvyrVv5" target="_blank" rel="noopener" class="map-link">Tiwari Hardware & Enterprises Sandha Chhapra, Near ICICI Bank, Chhapra, Saran — 841301 ↗</a></span></li>
+        <li><span class="label">Phone</span><span class="val"><a href="tel:+918750087436">+91 87500 87436</a></span></li>
+        <li><span class="label">WhatsApp</span><span class="val"><a href="https://wa.me/918750087436" target="_blank" rel="noopener">+91 87500 87436</a> (send us a photo of the part you need)</span></li>
+        <li><span class="label">Email</span><span class="val">contact@tiwarihardware.in</span></li>
+      </ul>
+      <div class="hours-strip">
+        <div><div class="day">Mon – Sat</div><div class="time">9:00 AM – 8:30 PM</div></div>
+        <div><div class="day">Sunday</div><div class="time">10:00 AM – 2:00 PM</div></div>
+      </div>
+    </div>
+    <a class="map-box" href="https://maps.app.goo.gl/FRSXS6TFd8zvyrVv5" target="_blank" rel="noopener">
+      <div>
+        <div class="pin">📍</div>
+        <p>Sandha Chhapra, Near ICICI Bank, Chhapra, Saran, Bihar — 841301</p>
+        <p style="margin-top:10px; color:var(--amber); font-family:'Oswald',sans-serif; letter-spacing:0.1em; font-size:13px;">TAP TO OPEN IN GOOGLE MAPS ↗</p>
+      </div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="fbrand">TIWARI HARDWARE & Enterprises
+    <div> Since 2001</div>
+  </div>
+  <div>© 2026 Tiwari Hardware. All rights reserved.
+    <div>Website Promoted by RanaTech</div>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/918750087436" target="_blank" aria-label="Chat on WhatsApp">💬</a>
+
+<script>
+  const toggle = document.getElementById('navToggle');
+  const nav = document.getElementById('siteNav');
+  toggle.addEventListener('click', () => nav.classList.toggle('open'));
+  document.querySelectorAll('nav a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+</script>
+
+</body>
+</html>
